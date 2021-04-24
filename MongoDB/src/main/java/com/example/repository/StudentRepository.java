@@ -7,6 +7,7 @@ import com.example.entity.Student;
 
 @Repository
 public interface StudentRepository extends MongoRepository<Student, String> {
+  
   List<Student> findByName(String name);
 
   List<Student> findByNameAndEmail(String name, String email);
@@ -16,5 +17,9 @@ public interface StudentRepository extends MongoRepository<Student, String> {
   List<Student> findByDepartmentDepartmentName(String deptName);
   
   List<Student> findBySubjectsSubjectName(String subName);
+  
+  List<Student> findByEmailIsLike(String email);
+  
+  List<Student> findByNameStartsWith(String name);
 
 }
