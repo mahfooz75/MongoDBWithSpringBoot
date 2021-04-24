@@ -48,6 +48,16 @@ public class StudentController {
       @RequestParam int pageSize) {
     return studentService.getAllWithPagination(pageNo,pageSize);
   }
+  
+  @GetMapping("/sorting")
+  public List<Student> getAllWithSorting() {
+    return studentService.getAllWithSorting();
+  }
+  
+  @GetMapping("/sorting/{field}")
+  public List<Student> getAllWithSorting(@PathVariable String field) {
+    return studentService.getAllWithSorting(field);
+  }
 
   @GetMapping("/studentByNameAndMail")
   public ResponseEntity<?> getStudentByNameAndMail(@RequestParam String name,

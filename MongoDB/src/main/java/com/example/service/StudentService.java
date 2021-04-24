@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
@@ -50,6 +51,16 @@ public class StudentService {
   public List<Student> getAllWithPagination(int pageNo, int pageSize) {
     Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
     return studentRepository.findAll(pageable).getContent();
+  }
+
+  public List<Student> getAllWithSorting() {
+    Sort sort = Sort.by(Sort.Direction.ASC, "name");
+    return studentRepository.findAll(sort);
+  }
+
+  public List<Student> getAllWithSorting(String field) {
+    Sort sort = Sort.by(Sort.Direction.ASC, field);
+    return studentRepository.findAll(sort);
   }
 
 }
