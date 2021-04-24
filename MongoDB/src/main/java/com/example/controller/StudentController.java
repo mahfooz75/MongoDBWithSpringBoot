@@ -44,9 +44,9 @@ public class StudentController {
   }
 
   @GetMapping("/studentByNameAndMail")
-  public ResponseEntity<?> getStudenyNameAndMail(@RequestParam String name,
+  public ResponseEntity<?> getStudentByNameAndMail(@RequestParam String name,
       @RequestParam String email) {
-    List<Student> students = studentService.getStudenyNameAndMail(name, email);
+    List<Student> students = studentService.getStudentByNameAndMail(name, email);
     if(students!=null && students.isEmpty()) {
       return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
     }
@@ -54,9 +54,9 @@ public class StudentController {
   }
   
   @GetMapping("/studentByNameOrMail")
-  public ResponseEntity<?> getStudenyNameOrMail(@RequestParam String name,
+  public ResponseEntity<?> getStudentByNameOrMail(@RequestParam String name,
       @RequestParam String email) {
-    List<Student> students = studentService.getStudenyNameOrMail(name, email);
+    List<Student> students = studentService.getStudentByNameOrMail(name, email);
     if(students!=null && students.isEmpty()) {
       return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
     }

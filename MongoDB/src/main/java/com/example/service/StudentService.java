@@ -37,11 +37,11 @@ public class StudentService {
     return studentRepository.findByName(name);
   }
 
-  public List<Student> getStudenyNameAndMail(String name, String email) {
+  public List<Student> getStudentByNameAndMail(String name, String email) {
     return studentRepository.findByNameAndEmail(name, email);
   }
 
-  public List<Student> getStudenyNameOrMail(String name, String email) {
+  public List<Student> getStudentByNameOrMail(String name, String email) {
     return studentRepository.findByNameOrEmail(name, email);
   }
 
