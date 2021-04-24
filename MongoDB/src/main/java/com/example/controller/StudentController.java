@@ -68,6 +68,16 @@ public class StudentController {
   public List<Student> getBySubjectName(@RequestParam String subName) {
     return studentService.getBySubjectName(subName);
   }
+  
+  @GetMapping("/emaillike")
+  public List<Student> emailLike(@RequestParam String email) {
+    return studentService.emailLike(email);
+  }
+  
+  @GetMapping("/namestartswith")
+  public List<Student> nameStartsWith(@RequestParam String name) {
+    return studentService.nameStartsWith(name);
+  }
 
   @GetMapping("/studentByNameAndMail")
   public ResponseEntity<?> getStudentByNameAndMail(@RequestParam String name,
