@@ -42,6 +42,12 @@ public class StudentController {
   public List<Student> getStudentByName(@PathVariable String name) {
     return studentService.getStudentByName(name);
   }
+  
+  @GetMapping("/pagination")
+  public List<Student> getAllWithPagination(@RequestParam int pageNo,
+      @RequestParam int pageSize) {
+    return studentService.getAllWithPagination(pageNo,pageSize);
+  }
 
   @GetMapping("/studentByNameAndMail")
   public ResponseEntity<?> getStudentByNameAndMail(@RequestParam String name,

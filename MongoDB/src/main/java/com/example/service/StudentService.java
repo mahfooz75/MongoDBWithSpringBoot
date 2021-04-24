@@ -2,6 +2,8 @@ package com.example.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.entity.Student;
 import com.example.repository.StudentRepository;
@@ -43,6 +45,11 @@ public class StudentService {
 
   public List<Student> getStudentByNameOrMail(String name, String email) {
     return studentRepository.findByNameOrEmail(name, email);
+  }
+
+  public List<Student> getAllWithPagination(int pageNo, int pageSize) {
+    Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+    return studentRepository.findAll(pageable).getContent();
   }
 
 }
