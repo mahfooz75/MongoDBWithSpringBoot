@@ -41,4 +41,8 @@ public class StudentService {
     return studentRepository.findByNameAndEmail(name, email);
   }
 
+  public List<Student> getStudenyNameOrMail(String name, String email) {
+    return studentRepository.findByNameOrEmail(name, email);
+  }
+
 }
