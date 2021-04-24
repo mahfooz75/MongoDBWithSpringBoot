@@ -35,6 +35,11 @@ public class StudentController {
     return studentService.getAllStudents();
   }
   
+  @GetMapping("/name/{name}")
+  public List<Student> getStudentByName(@PathVariable String name) {
+    return studentService.getStudentByName(name);
+  }
+  
   @PutMapping("/update")
   public Student updateStudent(@RequestBody Student student) {
     return studentService.updateStudent(student);
