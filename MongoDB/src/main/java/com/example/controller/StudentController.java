@@ -58,6 +58,16 @@ public class StudentController {
   public List<Student> getAllWithSorting(@PathVariable String field) {
     return studentService.getAllWithSorting(field);
   }
+  
+  @GetMapping("/department/{deptname}")
+  public List<Student> getByDepartmentName(@PathVariable String deptname) {
+    return studentService.getByDepartmentName(deptname);
+  }
+  
+  @GetMapping("/subjectname")
+  public List<Student> getBySubjectName(@RequestParam String subName) {
+    return studentService.getBySubjectName(subName);
+  }
 
   @GetMapping("/studentByNameAndMail")
   public ResponseEntity<?> getStudentByNameAndMail(@RequestParam String name,
