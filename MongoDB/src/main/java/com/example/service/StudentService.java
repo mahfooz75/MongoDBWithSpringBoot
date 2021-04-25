@@ -6,16 +6,35 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import com.example.entity.Department;
 import com.example.entity.Student;
+import com.example.entity.Subject;
+import com.example.repository.DepartmentRepository;
 import com.example.repository.StudentRepository;
+import com.example.repository.SubjectRepository;
 
 @Service
 public class StudentService {
 
   @Autowired
   private StudentRepository studentRepository;
+  @Autowired
+  private DepartmentRepository departmentRepository;
+  @Autowired
+  private SubjectRepository subjectRepository;
+
 
   public Student createStudent(Student student) {
+
+    Department department = student.getDepartment();
+    if (department != null) {
+      departmentRepository.save(department);
+    }
+
+    List<Subject> subjects = student.getSubjects();
+    if (subjects != null && !subjects.isEmpty()) {
+      subjectRepository.saveAll(subjects);
+    }
     return studentRepository.save(student);
   }
 
@@ -64,11 +83,13 @@ public class StudentService {
   }
 
   public List<Student> getByDepartmentName(String deptname) {
-    return studentRepository.findByDepartmentDepartmentName(deptname);
+    Department department = departmentRepository.findByDepartmentName(deptname);
+    return studentRepository.findByDepartmentId(department.getId());
   }
 
   public List<Student> getBySubjectName(String subName) {
-    return studentRepository.findBySubjectsSubjectName(subName);
+    Subject subject = subjectRepository.findBySubjectName(subName);
+    return studentRepository.findBySubjectsId(subject.getId());
   }
 
   public List<Student> emailLike(String email) {
@@ -77,6 +98,14 @@ public class StudentService {
 
   public List<Student> nameStartsWith(String name) {
     return studentRepository.findByNameStartsWith(name);
+  }
+
+  public List<Student> byDepartmentId(String deptId) {
+    return studentRepository.findByDepartmentId(deptId);
+  }
+
+  public List<Student> getStudentByNameAndMailUsingNativeQuery(String name, String email) {
+    return studentRepository.getByNameAndEmail(name, email);
   }
 
 }
