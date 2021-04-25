@@ -78,6 +78,16 @@ public class StudentController {
   public List<Student> nameStartsWith(@RequestParam String name) {
     return studentService.nameStartsWith(name);
   }
+  
+  @GetMapping("/getByNameAndMail")
+  public ResponseEntity<?> getStudentByNameAndMailUsingNativeQuery(@RequestParam String name,
+      @RequestParam String email) {
+    List<Student> students = studentService.getStudentByNameAndMailUsingNativeQuery(name, email);
+    if(students!=null && students.isEmpty()) {
+      return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
+    }
+    return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
+  }
 
   @GetMapping("/studentByNameAndMail")
   public ResponseEntity<?> getStudentByNameAndMail(@RequestParam String name,
@@ -97,6 +107,11 @@ public class StudentController {
       return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
+  }
+  
+  @GetMapping("/bydepartmentid")
+  public List<Student> byDepartmentId(@RequestParam String deptId) {
+    return studentService.byDepartmentId(deptId);
   }
 
   @PutMapping("/update")
