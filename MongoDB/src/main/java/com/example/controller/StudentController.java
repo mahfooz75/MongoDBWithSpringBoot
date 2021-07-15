@@ -84,9 +84,9 @@ public class StudentController {
       @RequestParam String email) {
     List<Student> students = studentService.getStudentByNameAndMailUsingNativeQuery(name, email);
     if(students!=null && students.isEmpty()) {
-      return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>("Data Not Found", HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
+    return new ResponseEntity<>(students, HttpStatus.OK);
   }
 
   @GetMapping("/studentByNameAndMail")
@@ -94,9 +94,9 @@ public class StudentController {
       @RequestParam String email) {
     List<Student> students = studentService.getStudentByNameAndMail(name, email);
     if(students!=null && students.isEmpty()) {
-      return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>("Data Not Found", HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
+    return new ResponseEntity<>(students, HttpStatus.OK);
   }
   
   @GetMapping("/studentByNameOrMail")
@@ -104,9 +104,9 @@ public class StudentController {
       @RequestParam String email) {
     List<Student> students = studentService.getStudentByNameOrMail(name, email);
     if(students!=null && students.isEmpty()) {
-      return new ResponseEntity<String>("Data Not Found", HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>("Data Not Found", HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
+    return new ResponseEntity<>(students, HttpStatus.OK);
   }
   
   @GetMapping("/bydepartmentid")
