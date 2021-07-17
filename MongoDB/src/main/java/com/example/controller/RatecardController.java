@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.entity.CommercialGroup;
 import com.example.entity.PlanClass;
 import com.example.entity.Ratecard;
+import com.example.entity.RatecardRequest;
+import com.example.mapper.RatecardMapperImpl;
 import com.example.service.RatecardService;
 
 @RestController
@@ -43,7 +45,8 @@ public class RatecardController {
   }
 
   @PostMapping("/create")
-  public Ratecard createStudent(@RequestBody Ratecard ratecard) {
+  public Ratecard createStudent(@RequestBody RatecardRequest request) {
+    Ratecard ratecard=new RatecardMapperImpl().ratecardRequestToRatecard(request);
     return ratecardService.createRatecard(ratecard);
   }
 }
